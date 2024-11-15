@@ -1,5 +1,8 @@
 #! /bin/bash
 
+
+echo "Uninstalling LED's routines and services..."
+
 # stops services and routines
 sudo systemctl stop keyboard_leds
 pid=`pgrep keyboard_leds`
@@ -13,3 +16,5 @@ sudo rm /etc/systemd/system/keyboard_leds.service
 
 # reloading services - forcing initialization
 sudo systemctl daemon-reload
+
+echo "Done!"

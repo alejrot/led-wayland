@@ -2,54 +2,93 @@
 # Keyboard LEDs with Wayland and Systemd 
 
 
-This service searchs the keyboard LEDS from their Wayland folder and forces to turn them periodically every 0.2 seconds.
+This service searchs the keyboard LEDS from their Wayland folder and forces to turn them periodically.
 
 
 [Spanish version - LEEME.md](LEEME.md#leds-de-teclado-con-systemd-y-wayland)
 
-## How to Install
 
-Open a Bash terminal and paste in it the comands:
+## Download
+
+Open a Bash terminal and download the repository, copying and pasting these commands:
 
 ```bash
-git clone https://github.com/MarceloMarot/Led_Wayland.git
+git clone https://github.com/alejrot/Led_Wayland.git
 cd Led_Wayland
 ```
 
-Then copy and paste in terminal the commands:
+Now give excecution permissions to all routines:
+
 ```bash
+sudo chmod +x keyboard_leds.sh
+sudo chmod +x switching.sh  
 sudo chmod +x install.sh
+sudo chmod +x uninstall.sh 
+``` 
+
+
+
+## How to Install
+
+
+Copy and paste these commands in terminal:
+
+```bash
 sudo ./install.sh
 ```
 
-## Giving User Permissions
+The LEDs switching is made with the local routine `./switching`:
 
-This task requires user permissions to work properly. 
-Users require execution permissions to run this task properly.
-
-To this, open `sudoers` file as `sudo`:
-
-```bash
-sudo nano /etc/sudoers
+```bash 
+# carpeta de usuario
+sudo ./switching.sh    
 ```
 
-then add the following line codes at the end and save:
- 
-```bash
-## Enabling permissions to all users for this particular task   
-ALL ALL=(ALL) /etc/systemd/system/keyboard_leds.service
+or with its copy in system's folder:
+
+```bash 
+# carpeta del sistema
+sudo /usr/local/bin/keyboard_switch.sh  
 ```
 
-It gives permissions to all users to execute this task.
+By the moment both routines requires *root permissions* to work.
 
 
 ## How to Uninstall
 
-Execute this line codes in Bash:
+Execute this line codes in Bash to erase all the system's *scripts*:
+
 ```bash
-chmod +x uninstall.sh 
 sudo ./uninstall.sh
 ```
+
+
+## Modify parameters
+
+the changes are made from Systemd's local file, called `keyboard_leds.service`:
+
+```bash
+# 'keyboard_leds.service'
+ExecStart=/usr/bin/nice -n 20 /usr/local/bin/keyboard_leds.sh /sys/class/leds/  0.05
+```
+
+This service calls `nice` command, which lets choose routine's priority.
+
+
+Parameters:
+
+- `-n 19` choose routine's priority, where value `19` is the minimum;
+- `/usr/local/bin/keyboard_leds.sh` is the routine's copy in system.
+- `/sys/class/leds/` is the LEDs path defined by Wayland;
+- ` 0.05` is the time in seconds between routine repetitions.
+
+
+Guardar cambios y reinstalar:
+
+```bash
+sudo ./install.sh
+```
+
 
 
 ## References:
