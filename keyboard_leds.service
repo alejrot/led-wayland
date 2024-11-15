@@ -1,11 +1,11 @@
 
 
 [Unit]
-Description=Turning on LEDs - periodic task.
+Description=Turning on LEDs on Wayland - periodic task.
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/nice -n 20 /usr/bin/keyboard_leds.sh /sys/class/leds/  0.1
+ExecStart=/usr/bin/nice -n 20 /usr/local/bin/keyboard_leds.sh /sys/class/leds/  0.1
 
 [Install]
 WantedBy=multi-user.target
