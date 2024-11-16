@@ -11,7 +11,7 @@ function sigusr1_handler() {
         leds_value=1
     fi
 
-    echo "\nSIGINT received - LEDs value: $leds_value"
+    echo "\nSIGUSR1 received - LEDs value: $leds_value"
 }
 
 
