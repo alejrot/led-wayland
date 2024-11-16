@@ -48,7 +48,28 @@ o con su copia en las carpetas del sistema:
 sudo /usr/local/bin/keyboard_switch.sh  
 ```
 
-De momento ambas tareas exigen *permisos de administrador* para funcionar.
+Ambas tareas exigen *permisos de administrador* para funcionar.
+
+## Quitar contraseña
+
+Para poder ejecutar este comando sin contraseña de *sudo*, primero crea un archivo en la carpeta  `/etc/sudoers.d/`:
+
+```bash
+sudo nano /etc/sudoers.d/leds_wayland 
+```
+y guarda en él el nuevo permiso *custom*:
+
+```
+ALL ALL=(ALL)  NOPASSWD: /usr/local/bin/keyboard_switch.sh
+```
+
+Ahora cualquier usuario del sistema podrá encender o apagar los LEDs a voluntad:
+
+```bash 
+sudo /usr/local/bin/keyboard_switch.sh  
+```
+Este comando puede agregarse a los atajos del teclado para mejor uso.
+
 
 
 ## Cómo Desinstalar

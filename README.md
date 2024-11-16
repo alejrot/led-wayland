@@ -54,6 +54,29 @@ sudo /usr/local/bin/keyboard_switch.sh
 By the moment both routines requires *root permissions* to work.
 
 
+## Remove password
+
+
+To be able to execute this command without *sudo* password, first create a file in folder `/etc/sudoers.d/`:
+
+```bash
+sudo nano /etc/sudoers.d/leds_wayland 
+```
+
+and save in it the new *custom* permission:
+
+```
+ALL ALL=(ALL)  NOPASSWD: /usr/local/bin/keyboard_switch.sh
+```
+ 
+Now every system user will turn on or turn off LEDS freely:
+
+```bash 
+sudo /usr/local/bin/keyboard_switch.sh  
+```
+This command can be added to keyboard shortcuts for better use
+
+
 ## How to Uninstall
 
 Execute this line codes in Bash to erase all the system's *scripts*:
