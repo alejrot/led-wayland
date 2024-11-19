@@ -18,10 +18,17 @@ sudo cp keyboard_leds.service /etc/systemd/system/keyboard_leds.service
 sudo cp switching.sh   /usr/local/bin/keyboard_switch.sh
 sudo chmod +x  /usr/local/bin/keyboard_switch.sh
 
+# enable permissions to users for switch execution  
+echo "ALL ALL=(ALL)  NOPASSWD: /usr/local/bin/keyboard_switch.sh"  > /etc/sudoers.d/leds_wayland 
+
 
 # enables auto-init 
 sudo systemctl enable keyboard_leds
 sudo systemctl daemon-reload
 sudo systemctl start keyboard_leds
 
+
 echo "Done!"
+echo "Now the LEDs must turn on automatically"
+echo "To turn off LEDs or turn on again execute:"
+echo "sudo /usr/local/bin/keyboard_switch.sh  "
