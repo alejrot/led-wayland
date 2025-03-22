@@ -1,11 +1,12 @@
 
-# Keyboard LEDs with Wayland and Systemd 
+# Backlight Keyboard LEDs - with Wayland and Systemd 
 
 
-This service searchs the keyboard LEDS from their Wayland folder and forces to turn them on periodically.
+This service searchs the keyboard backlight Leds 
+from their Wayland folder and forces them
+to turn on periodically.
 
-
-[Spanish version - LEEME.md](LEEME.md#leds-de-teclado-con-systemd-y-wayland)
+[Spanish version - LEEME.md](LEEME.md)
 
 
 ## Download
@@ -13,24 +14,20 @@ This service searchs the keyboard LEDS from their Wayland folder and forces to t
 Open a Bash terminal and download the repository, copying and pasting these commands:
 
 ```bash
-git clone https://github.com/alejrot/Led_Wayland.git
-cd Led_Wayland
+git clone https://github.com/alejrot/led-wayland.git
+cd led-wayland
 ```
 
-Now give excecution permissions to routines:
-
-```bash
-sudo chmod +x install.sh
-sudo chmod +x uninstall.sh 
-``` 
-
+or simply download the repository as .zip file and extract it.
 
 ## How to Install
 
 
-Copy and paste these commands in terminal:
+Copy and paste these commands in terminal
+inside the folders project:
 
 ```bash
+sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
@@ -39,7 +36,7 @@ sudo ./install.sh
 To turn on or turn off LEDS execute:
 
 ```bash 
-sudo /usr/local/bin/keyboard_switch.sh  
+sudo /opt/led-wayland/switching.sh  
 ```
 
 It doesn't require `sudo` password.
@@ -48,9 +45,11 @@ This command can be added to keyboard shortcuts for better use.
 
 ## How to Uninstall
 
-Execute this line codes in Bash to erase all the system's *scripts*:
+Execute this line codes in Bash to erase
+system folder and config files:
 
 ```bash
+sudo chmod +x uninstall.sh 
 sudo ./uninstall.sh
 ```
 

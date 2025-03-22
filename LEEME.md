@@ -1,10 +1,10 @@
 
-# LEDS de teclado con Systemd y Wayland
+# LEDS traseros de teclado - con Systemd y Wayland
 
 
-Este servicio busca los LEDs de teclado desde su directorio de Wayland y obliga a encenderlos periódicamente. 
+Este servicio busca los Leds traseros del teclado desde su directorio de Wayland y obliga a encenderlos periódicamente. 
 
-[Version en inglés - README.md](README.md#keyboard-leds-with-wayland-and-systemd)
+[Version en inglés - README.md](README.md)
 
 
 
@@ -13,22 +13,19 @@ Este servicio busca los LEDs de teclado desde su directorio de Wayland y obliga 
 Abre una terminal Bash y descarga el repositorio, copiando y pegando los comandos:
 
 ```bash
-git clone https://github.com/alejrot/Led_Wayland.git
-cd Led_Wayland
+git clone https://github.com/alejrot/led-wayland.git
+cd led-wayland
 ```
-Ahora da permisos de ejecución a las rutinas:
 
-```bash
-sudo chmod +x install.sh
-sudo chmod +x uninstall.sh 
-``` 
-
+o simplemente descarga el repositorio como archivo .zip y extráelo.
 
 ## Cómo Instalar
 
-Copia y pega los comandos en la terminal:
+Copia y pega los comandos en una terminal
+dentro de la carpeta del proyecto:
 
 ```bash
+sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
@@ -38,10 +35,10 @@ sudo ./install.sh
 Para encender o apagar los LEDs ejecutar:
 
 ```bash 
-sudo /usr/local/bin/keyboard_switch.sh  
+sudo /opt/led-wayland/switching.sh  
 ```
 
-No se requieren permisos de `sudo`.
+No se requieren permisos de `sudo` para esto.
 Este comando puede agregarse a los atajos del teclado para mejor uso.
 
 
@@ -50,6 +47,7 @@ Este comando puede agregarse a los atajos del teclado para mejor uso.
 Ejecuta estas lineas en Bash para borrar todos los *scripts* del sistema:
 
 ```bash
+sudo chmod +x uninstall.sh 
 sudo ./uninstall.sh
 ```
 
