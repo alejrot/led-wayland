@@ -1,17 +1,25 @@
 #! /bin/bash
 
 echo "Installing LEDs control for Wayland"
+
+# stops task if they're already working
 echo "It assumes Systemd's service is enabled"
-
-
-# stops tasks if they're already working
 sudo systemctl stop keyboard_leds
 
 # copy repository to 'opt' system directory
 echo "Copying repository to /opt folder"
-cd ..
-sudo cp -r led-wayland/ /opt
-echo "done"
+# cd ..
+# sudo cp -r led-wayland/ /opt
+if [ -d /opt/led-wayland ]
+then
+    echo "Folder exists already"
+else
+    echo "Creating folder"
+    mkdir /opt/led-wayland
+fi
+
+sudo cp * /opt/led-wayland
+echo "Repository copied"
 
 # periodic task - pushes LED's status (to ON by default)
 sudo chmod +x /opt/led-wayland/keyboard_leds.sh
@@ -36,6 +44,7 @@ sudo systemctl start keyboard_leds
 
 
 echo "Done!"
+echo ""
 echo "Now the LEDs should turn on automatically"
-echo "To turn off LEDs or turn on again execute:"
+echo "To turn off LEDs or turn on again execute:"   
 echo "sudo /opt/led-wayland/switching.sh"
